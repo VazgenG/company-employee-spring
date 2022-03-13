@@ -7,6 +7,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import java.util.List;
 
 @AllArgsConstructor
 @NoArgsConstructor
@@ -18,18 +19,19 @@ public class Employee {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    int id;
+    private int id;
     private String name;
     private String surname;
     private String email;
     private String phoneNumber;
     private double salary;
     private String position;
-    private String picUrl;
-
 
     @ManyToOne(fetch = FetchType.EAGER)
     private Company company;
+
+    @OneToMany(mappedBy = "employee")
+    private List<EmployeeImage> employeeImages;
 
 
 }

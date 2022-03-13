@@ -2,6 +2,20 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <style>
+        .btn {
+            background-color: #8080c4;
+            border: none;
+            color: white;
+            padding: 12px 16px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+
+        /* Darker background on mouse-over */
+        .btn:hover {
+            background-color: #ffffff;
+        }
+
         #customers {
             font-family: Arial, Helvetica, sans-serif;
             border-collapse: collapse;
@@ -26,14 +40,19 @@
         }
     </style>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>Spring project</title>
 </head>
 <body>
+<h3>
+<a href="?lang=hy"> Հայերեն | </a>
+<a href="?lang=ru"> Русский | </a>
+<a href="?lang=en"> English </a>
+</h3>
+<button class="btn"><a href="/employees" th:text="#{ main.view.all.employees }"></a></button>
+<button class="btn"><a href="/addCompany" th:text="#{ main.add.company}"></a></button> <br>
 
 <h1 style="background-color:#04AA6D" text align="center">
-Companies:<a href="/addCompany"> ADD COMPANY </a> <br>
-</h1>
-
+    Companies:</h1>
 <table id="customers">
     <tr>
         <th>id</th>
@@ -48,12 +67,11 @@ Companies:<a href="/addCompany"> ADD COMPANY </a> <br>
         <td th:text="${company.name}"></td>
         <td th:text="${company.size}"></td>
         <td th:text="${company.address}"></td>
-        <td><a href="@{'/employees/byCompany/' + ${company.id}}"> VIEW COMPANY EMPLOYEES </a></td>
+        <td><a th:href="@{'/employees/byCompany/' + ${company.id}}"> VIEW COMPANY EMPLOYEES </a></td>
         <td><a th:href="@{'/deleteCompany/' + ${company.id}}"> DELETE </a> |  <a th:href="@{'/editCompany/' + ${company.id}}"> EDIT </a></td>
     </tr>
 </table>
-<h1 style="background-color:#04AA6D" text align="center">
-Employees: <a href="/employees">  VIEW ALL EMPLOYEES </a>
-</h1>
+
+
 </body>
 </html>
